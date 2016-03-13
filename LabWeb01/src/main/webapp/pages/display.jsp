@@ -7,7 +7,37 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" type="text/css" href="../css/table.css" />
 <title>Display</title>
+<style>
+
+#photo {
+	position:absolute;
+	z-index:1;
+	left:600px;
+	top:75px;
+	width:300px;
+	height:300px;
+}
+
+</style>
 <script type="text/javascript" src="../js/jquery-2.2.1.min.js"></script>
+<script type="text/javascript">
+
+function doMouseOver(url){
+// 	console.log("hahaha");
+	var imgElement = document.createElement("img");
+	imgElement.setAttribute("src", url);
+	var photoElement = document.getElementById("photo");
+	photoElement.appendChild(imgElement);
+}
+
+function doMouseOut(){
+// 	console.log("hehehe");
+	var photoElement = document.getElementById("photo");
+	photoElement.removeChild(photoElement.firstChild);
+}
+
+</script>
+
 </head>
 <body>
 
@@ -33,11 +63,16 @@
 			<c:param name="make" value="${row.make}" />
 			<c:param name="expire" value="${row.expire}" />
 		</c:url>
+		
+		<c:url value="/pages/photo.view" var="url" scope="page">
+			<c:param name="photoid" value="${row.id}"></c:param>
+		</c:url>		
+		
 	<tr>
 		<td><a href="${path}">${row.id}</a></td>
 		<td>${row.name}</td>
 		<td>${row.price}</td>
-		<td>${row.make}</td>
+		<td><label onmouseover="doMouseOver('${url}')" onmouseout="doMouseOut()">${row.make}</label></td>
 		<td>${row.expire}</td>
 	</tr>
 	</c:forEach>
@@ -46,5 +81,8 @@
 </c:if>
 
 <h3><a href="<c:url value="/pages/product.jsp" />">Product Table</a></h3>
+
+<div id="photo"></div>
+
 </body>
 </html>
