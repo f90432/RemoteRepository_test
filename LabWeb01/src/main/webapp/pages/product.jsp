@@ -18,10 +18,10 @@ function doBlur() {
 	document.getElementsByTagName("img")[0].style.display =  "inline";
  	var url = path+"/pages/product.view";
 	var id = document.getElementsByTagName("input")[0].value;
-// 	sendGetRequest(url, id, "textText");
+	sendGetRequest(url, id, "textText");
 // 	sendPostRequest(url, id, "textXml");
 // 	sendPostRequest(url, id, "textJson");
-	sendPostRequestJSON(url, id);
+// 	sendPostRequestJSON(url, id);
 }
 function clearForm() {
 	var inputs = document.getElementsByTagName("input");
