@@ -22,6 +22,18 @@
 <script type="text/javascript" src="../js/jquery-2.2.1.min.js"></script>
 <script type="text/javascript">
 
+var url = "${pageContext.request.contextPath}/pages/photo.view?photoid=";
+$(document).ready(function(){
+	$("tbody>tr>td:nth-child(2)").each(function(){
+		$(this).mouseover(function(){
+			var id = $(this).prev().text();
+			$("#photo").html('<img src="'+url+id+'">');
+		}).mouseout(function(){
+			$("#photo").empty();
+		});
+	});
+});
+
 function doMouseOver(url){
 // 	console.log("hahaha");
 	var imgElement = document.createElement("img");
